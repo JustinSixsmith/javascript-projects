@@ -1,84 +1,95 @@
-const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+const toppings = [
+    "Mushrooms ",
+    "Tomatoes",
+    "Eggs",
+    "Chili",
+    "Lettuce",
+    "Avocado",
+    "Chiles",
+    "Bacon",
+    "Pickles",
+    "Onions",
+    "Cheese",
+];
 
 const students = [
     {
-        id: '11ce',
-        first_name: 'Dall',
-        last_name: 'Puckring',
+        id: "11ce",
+        first_name: "Dall",
+        last_name: "Puckring",
     },
     {
-        id: '2958',
-        first_name: 'Margarete',
-        last_name: 'Brandi',
+        id: "2958",
+        first_name: "Margarete",
+        last_name: "Brandi",
     },
     {
-        id: '565a',
-        first_name: 'Bendicty',
-        last_name: 'Woodage',
+        id: "565a",
+        first_name: "Bendicty",
+        last_name: "Woodage",
     },
     {
-        id: '3a16',
-        first_name: 'Micki',
-        last_name: 'Mattes',
+        id: "3a16",
+        first_name: "Micki",
+        last_name: "Mattes",
     },
     {
-        id: 'f396',
-        first_name: 'Flory',
-        last_name: 'Gladeche',
+        id: "f396",
+        first_name: "Flory",
+        last_name: "Gladeche",
     },
     {
-        id: 'de5f',
-        first_name: 'Jamill',
-        last_name: 'Emilien',
+        id: "de5f",
+        first_name: "Jamill",
+        last_name: "Emilien",
     },
     {
-        id: '54cb',
-        first_name: 'Brett',
-        last_name: 'Aizikowitz',
+        id: "54cb",
+        first_name: "Brett",
+        last_name: "Aizikowitz",
     },
     {
-        id: '9135',
-        first_name: 'Lorry',
-        last_name: 'Smallman',
+        id: "9135",
+        first_name: "Lorry",
+        last_name: "Smallman",
     },
     {
-        id: '978f',
-        first_name: 'Gilly',
-        last_name: 'Flott',
+        id: "978f",
+        first_name: "Gilly",
+        last_name: "Flott",
     },
 ];
 
 const people = [
     {
-        birthday: 'April 22, 1993',
+        birthday: "April 22, 1993",
         names: {
-            first: 'Keith',
-            last: 'Buckley'
-        }
+            first: "Keith",
+            last: "Buckley",
+        },
     },
     {
-        birthday: 'January 3, 1975',
+        birthday: "January 3, 1975",
         names: {
-            first: 'Larry',
-            last: 'Heep'
-        }
+            first: "Larry",
+            last: "Heep",
+        },
     },
     {
-        birthday: 'February 12, 1944',
+        birthday: "February 12, 1944",
         names: {
-            first: 'Linda',
-            last: 'Bermeer'
-        }
-    }
+            first: "Linda",
+            last: "Bermeer",
+        },
+    },
 ];
 
-
-const buns = ['egg', 'wonder', 'brioche'];
+const buns = ["egg", "wonder", "brioche"];
 
 const meats = {
     beyond: 10,
     beef: 5,
-    pork: 7
+    pork: 7,
 };
 
 const prices = {
@@ -91,29 +102,28 @@ const prices = {
 const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
 
 const feedback = [
-    { comment: 'Love the burgs', rating: 4 },
-    { comment: 'Horrible Service', rating: 2 },
-    { comment: 'Smoothies are great, liked the burger too', rating: 5 },
-    { comment: 'Ambiance needs work', rating: 3 },
-    { comment: 'I DONT LIKE BURGERS', rating: 1 },
+    { comment: "Love the burgs", rating: 4 },
+    { comment: "Horrible Service", rating: 2 },
+    { comment: "Smoothies are great, liked the burger too", rating: 5 },
+    { comment: "Ambiance needs work", rating: 3 },
+    { comment: "I DONT LIKE BURGERS", rating: 1 },
 ];
 
-const faces = ['😃', '🤠', '🤡', '🤑', '😵', '🌞', '🐶', '😺'];
+const faces = ["😃", "🤠", "🤡", "🤑", "😵", "🌞", "🐶", "😺"];
 
 const inventory = [
-    { type: 'shirt', price: 4000 },
-    { type: 'pants', price: 4532 },
-    { type: 'socks', price: 234 },
-    { type: 'shirt', price: 2343 },
-    { type: 'pants', price: 2343 },
-    { type: 'socks', price: 542 },
-    { type: 'pants', price: 123 },
+    { type: "shirt", price: 4000 },
+    { type: "pants", price: 4532 },
+    { type: "socks", price: 234 },
+    { type: "shirt", price: 2343 },
+    { type: "pants", price: 2343 },
+    { type: "socks", price: 542 },
+    { type: "pants", price: 123 },
 ];
 
-
 /*
-  Looping Methods
-*/
+      Looping Methods
+    */
 
 function logTopping(topping, index, originalArray) {
     const prevTopping = originalArray[index - 1];
@@ -162,23 +172,70 @@ function attachBody(face, body) {
 // get their birthday
 // figure out how old they are
 // return their full name and bday in an object
-const cleanPeople = people.map((person) => {
-    const birthday = new Date(person.birthday).getTime();
-    const now = Date.now();
-    const age = Math.floor((now - birthday) / 1000 / 60 / 60 / 24 / 365);
-    return {
-        age,
-        name: `${person.names.first} ${person.names.last}`,
-    };
-});
 
-console.table(cleanPeople);
+// const cleanPeople = people.map((person) => {
+//   const birthday = new Date(person.birthday).getTime();
+//   const now = Date.now();
+//   const age = Math.floor((now - birthday) / 1000 / 60 / 60 / 24 / 365);
+//   return {
+//     age,
+//     name: `${person.names.first} ${person.names.last}`,
+//   };
+// });
+
+// console.table(cleanPeople);
+
+// const over40 = cleanPeople.filter((person) => person.age > 40);
+
+// console.table(over40);
+
+// Filter / Find
+
+const student = students.find((student) => student.id === "2958");
+
+// console.log(student);
+
+function findById(id) {
+    return function (student) {
+        return student.id === id;
+    };
+}
+
+function findByProperty(property, value) {
+    return function (student) {
+        return student[property] === value;
+    };
+}
+
+const student2 = students.find(findById("2958"));
+const student3 = students.find(findByProperty("first_name", "Micki"));
+
+// console.log(student2);
+// console.log(student3);
 
 // Reduce!
 // return the current tally PLUS the amount of this order
-// increment the type by 1
-// totals.shirt ? totals.shirt + 1 : totals.shirt = 1;
-// return the totals, so the next loop can use it
+// const allOrders = orderTotals.reduce((a, b) => a + b, 0);
+// console.log(allOrders);
+
+function inventoryReducer(totals, item) {
+    // increment the type by 1
+    totals[item.type] = totals[item.type] + 1 || 1;
+    // totals.shirt ? totals.shirt + 1 : totals.shirt = 1;
+    // return the totals, so the next loop can use it
+    return totals;
+}
+
+const inventoryCounts = inventory.reduce(inventoryReducer, {});
+
+console.log(inventoryCounts);
+
+const totalInventoryPrice = inventory.reduce(
+    (grandTotal, item) => grandTotal + item.price,
+    0
+);
+
+console.log(totalInventoryPrice);
 
 // function makeLayer(brick, i, brickArray) {
 //   return `${" ".repeat(brickArray.length - i)}${brick.repeat(
@@ -192,9 +249,9 @@ console.table(cleanPeople);
 //     .map(makeLayer)
 //     .forEach((layer) => console.log(layer));
 
-//   //   for (let i = 1; i <= num; i++) {
-//   //     console.log(makeLayer(i, num, brick));
-//   //   }
+//   for (let i = 1; i <= num; i++) {
+//     console.log(makeLayer(i, num, brick));
+//   }
 // }
 
 // buildPyramid(10, "-");
