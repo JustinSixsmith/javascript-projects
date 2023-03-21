@@ -162,6 +162,18 @@ function attachBody(face, body) {
 // get their birthday
 // figure out how old they are
 // return their full name and bday in an object
+const cleanPeople = people.map((person) => {
+    const birthday = new Date(person.birthday).getTime();
+    const now = Date.now();
+    const age = Math.floor((now - birthday) / 1000 / 60 / 60 / 24 / 365);
+    return {
+        age,
+        name: `${person.names.first} ${person.names.last}`,
+    };
+});
+
+console.table(cleanPeople);
+
 // Reduce!
 // return the current tally PLUS the amount of this order
 // increment the type by 1
