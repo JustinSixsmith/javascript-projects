@@ -32,7 +32,7 @@ function ask(options) {
       skipButton.type = 'button';
       skipButton.textContent = 'Cancel';
       popup.firstElementChild.appendChild(skipButton);
-      // TODO: Listen for the click event
+      // Listen for the click event
       skipButton.addEventListener(
         'click',
         function (e) {
@@ -83,3 +83,35 @@ const buttons = document.querySelectorAll('[data-question]');
 buttons.forEach((button) => {
   button.addEventListener('click', askQuestion);
 });
+
+const questions = [
+  { title: 'What is your name?' },
+  { title: 'How old are you?', cancel: true },
+  { title: 'What is your favorite color?' },
+];
+
+async function asyncMap(array, callback) {
+  // Make an array to store our results
+  const results = [];
+  // Loop through the array
+  for (const item of array) {
+    results.push(await callback(item));
+  }
+  return results;
+}
+
+async function go() {
+  const answers = await asyncMap(questions, ask);
+  console.log(answers);
+}
+
+go();
+
+// async function askMany() {
+//   for (const question of questions) {
+//     const answer = await ask(question);
+//     console.log(answer);
+//   }
+// }
+
+// askMany();
