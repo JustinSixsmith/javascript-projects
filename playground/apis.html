@@ -5,21 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>APIs</title>
+    <link rel="stylesheet" href="../css/base.css" />
   </head>
   <body>
+    <p class="user"></p>
+
     <script>
       function handleError(err) {
         console.log('Oh no!');
+        console.log(err);
       }
 
       const endpoint = `https://api.github.com/users/wesbos`;
+      const userEl = document.querySelector('.user');
+
       const wesPromise = fetch(endpoint);
       wesPromise
         .then((response) => {
           return response.json();
-          console.log(handleError);
         })
-        .catch();
+        .then((data) => {
+          console.log(data);
+          console.log(data.blog);
+          console.log(data.name);
+          console.log(data.location);
+          userEl.textContent = `${data.name} - ${data.blog}`;
+        })
+        .catch(handleError);
     </script>
   </body>
 </html>
