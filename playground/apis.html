@@ -11,27 +11,27 @@
     <p class="user"></p>
 
     <script>
+      const baseEndpoint = `https://api.github.com`;
+      const usersEndpoint = `${baseEndpoint}/users`;
+      const userEl = document.querySelector('.user');
+
+      async function displayUser(username) {
+        userEl.textContent = 'Loading...';
+        const response = await fetch(`${usersEndpoint}/${username}`);
+        const data = await response.json();
+        console.log(data);
+        console.log(data.blog);
+        console.log(data.name);
+        console.log(data.location);
+        userEl.textContent = `${data.name} - ${data.blog}`;
+      }
+
       function handleError(err) {
         console.log('Oh no!');
         console.log(err);
       }
 
-      const endpoint = `https://api.github.com/users/wesbos`;
-      const userEl = document.querySelector('.user');
-
-      const wesPromise = fetch(endpoint);
-      wesPromise
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          console.log(data.blog);
-          console.log(data.name);
-          console.log(data.location);
-          userEl.textContent = `${data.name} - ${data.blog}`;
-        })
-        .catch(handleError);
+      displayUser('wesbos');
     </script>
   </body>
 </html>
