@@ -29,6 +29,7 @@
       function handleError(err) {
         console.log('Oh no!');
         console.log(err);
+        userEl.textContent = `Something went wrong: ${err}`;
       }
 
       displayUser('justinsixsmith').catch(handleError);
