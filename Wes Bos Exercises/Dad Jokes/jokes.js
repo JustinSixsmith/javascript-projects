@@ -16,16 +16,28 @@ async function fetchJoke() {
   const response = await fetch('https://icanhazdadjoke.com/', {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
     },
   });
   const data = await response.json();
   return data;
 }
 
+function randomItemfromArray(array, not) {
+  const item = array[Math.floor(Math.random() * array.length)];
+  if (item === not) {
+    console.log('Oops, we already used that one');
+    return randomItemfromArray(array, not);
+  }
+  return item;
+}
+
 async function handleClick() {
   const { joke } = await fetchJoke();
-  console.log(joke);
+  jokeHolder.textContent = joke;
+  jokeButton.textContent = randomItemfromArray(
+    buttonText,
+    jokeButton.textContent
+  );
 }
 
 jokeButton.addEventListener('click', handleClick);
