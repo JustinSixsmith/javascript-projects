@@ -1,5 +1,8 @@
+const fromInput = document.querySelector('[name="from_amount"]');
+const toEl = document.querySelector('.to_amount');
 const fromSelect = document.querySelector('[name="from_currency"]');
 const toSelect = document.querySelector('[name="to_currency"]');
+const form = document.querySelector('.app form');
 const ratesByBase = {};
 // const endpoint = 'https://api.apilayer.com/exchangerates_data/convert';
 const endpoint = 'https://api.exchangeratesapi.io/latest';
@@ -77,7 +80,24 @@ async function convert(amount, from, to) {
   return convertedAmount;
 }
 
+function formatCurrency(amount, currency) {
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+  }).format(amount);
+}
+
+async function handleInput(event) {
+  const rawAmount = await convert(
+    fromInput.value,
+    fromSelect.value,
+    toSelect.value
+  );
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+}
+
 const optionsHTML = generateOptions(currencies);
 // Populate the options elements
 fromSelect.innerHTML = optionsHTML;
 toSelect.innerHTML = optionsHTML;
+form.addEventListener('submit', handleInput);
